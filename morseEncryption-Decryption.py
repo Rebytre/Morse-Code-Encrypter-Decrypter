@@ -1,8 +1,10 @@
-#Morse (International) to English
+#Morse Encrypter / Decrypter
 #By: Rebytre
-#A python program designed to convert morse code into English.
+#A python program designed encrypt plaintext into Morse code and decrypt Morse code into plaintext.
 
-def convert():
+#Morse to Plaintext:
+
+def convertMorseToPlaintext():
     global morseCode
     singleMorseCharacter = ""
     output = ""
@@ -11,7 +13,7 @@ def convert():
         skipSpaces = avoidSpaces(charactersSearched)
         charactersSearched += skipSpaces
         singleMorseCharacter, charactersSearched = findMorseCharacter(charactersSearched)
-        output += convertCharacter(singleMorseCharacter)
+        output += convertMorseToPlaintextCharacter(singleMorseCharacter)
         if charactersSearched == len(morseCode): break
         else: singleMorseCharacter = ""
     return output
@@ -39,7 +41,7 @@ def avoidSpaces(charactersSearched):
     return spacesFound
         
 
-def convertCharacter(singleMorseCharacter):
+def convertMorseToPlaintextCharacter(singleMorseCharacter):
     if len(singleMorseCharacter) <= 4:
         #Alphabet:
         if singleMorseCharacter[0] == ".":
@@ -170,9 +172,74 @@ def convertCharacter(singleMorseCharacter):
         else: return "[?]"
     else: return "[?]"
 
+#Plaintext to Morse
+def convertPlaintextToMorse():
+    global plaintext
+    plaintext = plaintext.lower()
+    output = ""
+    for i in range(0, len(plaintext)):
+        if plaintext[i] == " ": output += "/"
+        elif plaintext[i] == "e": output += "."
+        elif plaintext[i] == "t": output += "-"
+        elif plaintext[i] == "a": output += ".-"
+        elif plaintext[i] == "o": output += "---"
+        elif plaintext[i] == "i": output += ".."
+        elif plaintext[i] == "n": output += "-."
+        elif plaintext[i] == "s": output += "..."
+        elif plaintext[i] == "r": output += ".-."
+        elif plaintext[i] == "h": output += "...."
+        elif plaintext[i] == "d": output += "-.."
+        elif plaintext[i] == "l": output += ".-.."
+        elif plaintext[i] == "u": output += "..-"
+        elif plaintext[i] == "c": output += "-.-."
+        elif plaintext[i] == "m": output += "--"
+        elif plaintext[i] == "f": output += "..-."
+        elif plaintext[i] == "y": output += "-.--"
+        elif plaintext[i] == "w": output += ".--"
+        elif plaintext[i] == "g": output += "--."
+        elif plaintext[i] == "p": output += ".--."
+        elif plaintext[i] == "b": output += "-.."
+        elif plaintext[i] == "v": output += "...-"
+        elif plaintext[i] == "k": output += "-.-"
+        elif plaintext[i] == "x": output += "-..-"
+        elif plaintext[i] == "q": output += "--.-"
+        elif plaintext[i] == "j": output += ".---"
+        elif plaintext[i] == "z": output += "--.."
+        elif plaintext[i] == "0": output += "-----"
+        elif plaintext[i] == "1": output += ".----"
+        elif plaintext[i] == "2": output += "..---"
+        elif plaintext[i] == "3": output += "...--"
+        elif plaintext[i] == "4": output += "....-"
+        elif plaintext[i] == "5": output += "....."
+        elif plaintext[i] == "6": output += "-...."
+        elif plaintext[i] == "7": output += "--..."
+        elif plaintext[i] == "8": output += "---.."
+        elif plaintext[i] == "9": output += "----."
+        elif plaintext[i] == "&": output += ".-..."
+        elif plaintext[i] == ";": output += "-.-.-."
+        elif plaintext[i] == ":": output += "---..."
+        elif plaintext[i] == ",": output += "--..--"
+        elif plaintext[i] == "(": output += "-.--."
+        elif plaintext[i] == ")": output += "-.--.-"
+        elif plaintext[i] == "!": output += "-.-.--"
+        elif plaintext[i] == ".": output += ".-.-.-"
+        elif plaintext[i] == "-": output += "-....-"
+        elif plaintext[i] == "\"": output += ".-..-."
+        elif plaintext[i] == "\'": output += ".----."
+        elif plaintext[i] == "?": output += "..--.."
+        elif plaintext[i] == "/": output += "-..-."
+        else: output += "[?]"
+        output += " "
+    return output
+
 #Main Program:
-while True:
-    morseCode = str(input("Please insert the international morse code you want to translate here:   \n\n"))
-    convertedOutput = convert()
-    print (f"\n\nThe inputted international morse code translates to: \"{convertedOutput}\"\n")
-    print ("If you want to translate another message:")
+eOrD = int(input("Input \"1\" to encrypt plaintext into Morse code, or \"2\" to decrypt Morse code into plaintext.\n"))
+if eOrD == 2:
+    morseCode = str(input("Please insert the international Morse code you want to decrypt here:   \n\n"))
+    convertedOutput = convertMorseToPlaintext()
+    print (f"\n\nThe inputted international Morse code translates to: \"{convertedOutput}\"\n")
+elif eOrD == 1:
+    plaintext = str(input("Please insert the plaintext you want to encrypt here:   \n\n"))
+    convertedOutput = convertPlaintextToMorse()
+    print (f"\n\nHere is the plaintext you provided encrypted into international Morse code: \"{convertedOutput}\"\n")
+else: print ("Invalid input.")
