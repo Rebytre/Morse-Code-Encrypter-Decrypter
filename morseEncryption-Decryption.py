@@ -198,7 +198,7 @@ def convertPlaintextToMorse():
         elif plaintext[i] == "w": output += ".--"
         elif plaintext[i] == "g": output += "--."
         elif plaintext[i] == "p": output += ".--."
-        elif plaintext[i] == "b": output += "-.."
+        elif plaintext[i] == "b": output += "-..."
         elif plaintext[i] == "v": output += "...-"
         elif plaintext[i] == "k": output += "-.-"
         elif plaintext[i] == "x": output += "-..-"
@@ -243,3 +243,4 @@ elif eOrD == 1:
     convertedOutput = convertPlaintextToMorse()
     print (f"\n\nHere is the plaintext you provided encrypted into international Morse code: \"{convertedOutput}\"\n")
 else: print ("Invalid input.")
+
