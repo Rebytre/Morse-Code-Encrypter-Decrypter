@@ -233,14 +233,19 @@ def convertPlaintextToMorse():
     return output
 
 #Main Program:
-eOrD = int(input("Input \"1\" to encrypt plaintext into Morse code, or \"2\" to decrypt Morse code into plaintext.\n"))
-if eOrD == 2:
+while True:
+    eOrD = input("Input \"e\" to encrypt plaintext into Morse code, or \"d\" to decrypt Morse code into plaintext.\n")
+    eOrD = eOrD.lower()
+    if eOrD == "e" or eOrD == "d": break
+    else: print ("Invalid input. Please try again.\n")
+if eOrD == "d":
     morseCode = str(input("Please insert the international Morse code you want to decrypt here:   \n\n"))
     convertedOutput = convertMorseToPlaintext()
     print (f"\n\nThe inputted international Morse code translates to: \"{convertedOutput}\"\n")
-elif eOrD == 1:
+elif eOrD == "e":
     plaintext = str(input("Please insert the plaintext you want to encrypt here:   \n\n"))
     convertedOutput = convertPlaintextToMorse()
     print (f"\n\nHere is the plaintext you provided encrypted into international Morse code: \"{convertedOutput}\"\n")
 else: print ("Invalid input.")
+
 
